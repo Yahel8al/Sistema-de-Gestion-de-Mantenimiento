@@ -32,8 +32,8 @@ Puedes usar cualquier proveedor SMTP. Dos opciones simples:
 3. Usa:
    - `SMTP_HOST=smtp.gmail.com`
    - `SMTP_PORT=465`
-   - `SMTP_USER=` tu correo completo
-   - `SMTP_PASS=` la contraseña de aplicación de 16 caracteres
+   - `SMTP_USER=123yadrielary@gmail.com` tu correo completo
+   - `SMTP_PASS=tnbq jzby ltpw ecvs` la contraseña de aplicación de 16 caracteres
 
 **Opción B — Un proveedor transaccional (SendGrid, Resend, Mailgun, etc.)**
 Estos son más confiables para producción (mejor entregabilidad, sin límites

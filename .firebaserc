@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "TU_PROJECT_ID_DE_FIREBASE"
-  }
+    "GestionMantenimiento": "gestion-de-mantenimiento-fa80a"
+  },
+  "targets": {},
+  "etags": {}
 }

@@ -1,14 +1,21 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Activity, AlertCircle } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { Button } from "../components/ui";
 
 export default function Login() {
-  const { login, accessError } = useAuth();
+  const { user, login, accessError } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Si ya hay una sesión activa (por ejemplo, justo después de iniciar sesión),
+  // se redirige automáticamente al Dashboard en vez de quedarse en /login.
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,6 +24,7 @@ export default function Login() {
     try {
       await login(email, password);
     } catch (err) {
+      console.error("Error de inicio de sesión (código Firebase):", err.code, err.message);
       setError("No pudimos iniciar sesión. Revisa tu correo y contraseña.");
     } finally {
       setLoading(false);
