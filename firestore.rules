@@ -1,0 +1,113 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function estaAutenticado() {
+      return request.auth != null;
+    }
+
+    function perfil() {
+      return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data;
+    }
+
+    function cuentaActiva() {
+      return perfil().activo != false;
+    }
+
+    function tieneRol(roles) {
+      return estaAutenticado() && cuentaActiva() && perfil().rol in roles;
+    }
+
+    function esAdmin() {
+      return tieneRol(['admin']);
+    }
+
+    function esStaffTecnico() {
+      return tieneRol(['admin', 'ingeniero', 'supervisor', 'tecnico']);
+    }
+
+    // Cualquier usuario autenticado puede leer su propio perfil y el administrador gestiona todos
+    match /usuarios/{uid} {
+      allow read: if estaAutenticado();
+      allow create: if estaAutenticado(); // el registro crea su propio documento
+      allow update, delete: if esAdmin() || request.auth.uid == uid;
+    }
+
+    // Trazabilidad: de solo lectura para roles de gestión/auditoría, y solo el sistema escribe (cualquier usuario autenticado puede registrar su propia acción)
+    match /auditoria/{id} {
+      allow read: if tieneRol(['admin', 'ingeniero', 'auditor', 'supervisor']);
+      allow create: if estaAutenticado();
+      allow update, delete: if false;
+    }
+
+    // Inventario, mantenimientos, órdenes y calibraciones: lectura para todos los autenticados,
+    // escritura para personal técnico/clínico-administrativo
+    match /equipos/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /mantenimientos_preventivos/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /mantenimientos_correctivos/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /ordenes_trabajo/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /contadores/{id} {
+      allow read, write: if esStaffTecnico();
+    }
+
+    match /calibraciones/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /repuestos/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /repuestos_movimientos/{id} {
+      allow read: if estaAutenticado();
+      allow create: if esStaffTecnico();
+      allow update, delete: if esAdmin();
+    }
+
+    match /proveedores/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /documentos/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    match /incidencias/{id} {
+      allow read: if estaAutenticado();
+      allow write: if estaAutenticado(); // el personal clínico también puede reportar incidencias
+    }
+
+    match /cumplimiento_normativo/{id} {
+      allow read: if estaAutenticado();
+      allow write: if esStaffTecnico();
+    }
+
+    // Escrita únicamente por las Cloud Functions (Admin SDK, no sujeto a estas reglas).
+    // Solo administradores/ingenieros pueden consultarla desde el cliente.
+    match /notificaciones_enviadas/{id} {
+      allow read: if tieneRol(['admin', 'ingeniero']);
+      allow write: if false;
+    }
+  }
+}

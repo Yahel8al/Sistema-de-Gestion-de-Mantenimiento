@@ -1,0 +1,22 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions de Pulso CMMS: alertas por correo y automatizaciones",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "echo \"(sin linter configurado)\"",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^5.1.1",
+    "nodemailer": "^6.9.15",
+    "date-fns": "^4.1.0"
+  }
+}

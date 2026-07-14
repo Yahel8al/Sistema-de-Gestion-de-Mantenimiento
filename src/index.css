@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-ink: #0F2532;
+  --color-ink-2: #16323F;
+  --color-ink-3: #1E4150;
+  --color-teal: #0E7C86;
+  --color-teal-light: #12A2AE;
+  --color-paper: #F3F7F7;
+  --color-card: #FFFFFF;
+  --color-line: #DCE6E6;
+  --color-muted: #5E7A80;
+
+  --color-ok: #2F9E63;
+  --color-ok-soft: #E4F5EC;
+  --color-warn: #D9A02A;
+  --color-warn-soft: #FBF1DC;
+  --color-critical: #D14B4B;
+  --color-critical-soft: #FBE7E7;
+  --color-info: #3A7CA5;
+  --color-info-soft: #E4EEF5;
+  --color-idle: #8A8F98;
+  --color-idle-soft: #EEEFF1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #C7D4D4;
+  border-radius: 8px;
+}
+
+/* --- Nameplate motif: signature element for equipment/asset identity --- */
+.nameplate {
+  position: relative;
+  border: 1px solid var(--color-line);
+  background: var(--color-card);
+  border-radius: 10px;
+}
+.nameplate::before,
+.nameplate::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 6px;
+  border-top: 2px solid var(--color-teal-light);
+  opacity: 0.55;
+}
+.nameplate::before {
+  left: 6px;
+  border-left: 2px solid var(--color-teal-light);
+  border-top-left-radius: 4px;
+}
+.nameplate::after {
+  right: 6px;
+  border-right: 2px solid var(--color-teal-light);
+  border-top-right-radius: 4px;
+}
+
+.pulse-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+.pulse-dot.live::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.35;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.5; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot.live::before { animation: none; }
+}
+
+.mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
