@@ -155,7 +155,7 @@ git init
 git add .
 git commit -m "Sistema Pulso: esqueleto completo de módulos CMMS biomédico"
 git branch -M main
-git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+git remote add origin https://github.com/Yahel8al/Sistema-de-Gestion-de-Mantenimiento.git
 git push -u origin main
 ```
 
