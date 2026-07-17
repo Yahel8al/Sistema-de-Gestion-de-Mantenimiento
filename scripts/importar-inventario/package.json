@@ -1,0 +1,14 @@
+{
+  "name": "importar-inventario",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Script de carga masiva de equipos desde CSV al inventario de Pulso",
+  "main": "import-inventario.js",
+  "scripts": {
+    "importar": "node import-inventario.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "csv-parse": "^5.5.6"
+  }
+}

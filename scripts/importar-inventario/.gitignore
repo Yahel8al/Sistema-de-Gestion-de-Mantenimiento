@@ -1,0 +1,4 @@
+node_modules/
+serviceAccountKey.json
+*.csv
+!plantilla-inventario.csv

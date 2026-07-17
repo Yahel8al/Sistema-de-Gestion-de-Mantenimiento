@@ -1,0 +1,4 @@
+codigo,nombre,tipo,marca,modelo,serie,fabricante,fechaCompra,fechaInstalacion,area,sala,estado,criticidad,valorAdquisicion,vidaUtilAnios,hojaVidaUrl
+EQ-0001,Monitor de signos vitales UCI 1,Monitor de signos vitales,Philips,IntelliVue MX450,SN12345,Philips Healthcare,2022-03-15,2022-04-01,Cuidados Intensivos (UCI),Cama 3,activo,alta,8500,10,https://drive.google.com/carpeta/eq-0001
+EQ-0002,Ventilador mecánico Quirófano 2,Ventilador mecánico,Draguer,Evita V500,SN67890,Draguer Medical,2021-06-10,2021-07-01,Quirófanos,Quirófano 2,activo,alta,15000,12,https://drive.google.com/carpeta/eq-0002
+EQ-0003,Bomba de infusión Hospitalización,Bomba de infusión,B. Braun,Infusomat Space,SN54321,B. Braun Melsungen,2023-01-20,2023-02-01,Hospitalización,Sala 401,mantenimiento,media,2200,8,

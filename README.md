@@ -44,6 +44,24 @@ sistema (alimentado por la Trazabilidad).
 reprogramarlo al instante, filtrar por tipo (preventivo/correctivo/calibración) además
 de por área, y hacer clic en cualquier evento para ver su detalle rápido.
 
+## Carga masiva del inventario desde un CSV (primera carga general)
+
+En vez de registrar cada equipo uno por uno desde la aplicación, puedes hacer la
+primera carga completa del inventario (o cualquier carga masiva futura) con un script
+de línea de comandos:
+
+```bash
+cd scripts/importar-inventario
+npm install
+node import-inventario.js mi-inventario.csv --dry-run   # valida sin subir nada
+node import-inventario.js mi-inventario.csv              # sube de verdad
+```
+
+La guía completa —incluyendo cómo obtener las credenciales, el orden exacto de las
+columnas del CSV, y los valores válidos para área/estado/criticidad— está en
+[`scripts/importar-inventario/README.md`](./scripts/importar-inventario/README.md).
+Ahí también encontrarás `plantilla-inventario.csv`, lista para usar como punto de partida.
+
 ## Infraestructura: notificaciones automáticas por correo (Cloud Functions)
 
 Se agregó la carpeta `functions/` con 3 Cloud Functions:
@@ -155,7 +173,7 @@ git init
 git add .
 git commit -m "Sistema Pulso: esqueleto completo de módulos CMMS biomédico"
 git branch -M main
-git remote add origin https://github.com/Yahel8al/Sistema-de-Gestion-de-Mantenimiento.git
+git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
 git push -u origin main
 ```
 
