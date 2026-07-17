@@ -9,7 +9,17 @@ import { logAudit } from "../lib/audit";
 import { EQUIPMENT_STATUS, CRITICALITY, AREAS } from "../lib/modules";
 import { Badge, Button, Card, Modal, EmptyState } from "../components/ui";
 
-const TIPOS = ["Monitor de signos vitales", "Ventilador mecánico", "Bomba de infusión", "Desfibrilador", "Electrobisturí", "Rayos X", "Ecógrafo", "Incubadora", "Autoclave", "Otro"];
+const TIPOS = ["Analizador de gases sanguíneos", "Analizador hematológico", "Analizador de inmunología", 
+  "Analizador de química clínica", "Arco en C", "Aspirador de secreciones", "Autoclave", "Bomba de infusión",
+  "Campana de flujo laminar",  "Central de monitoreo", "Centrífuga", "CPAP neonatal", "Desfibrilador", 
+  "Ecocardiógrafo", "Ecógrafo", "Electrobisturí", "Electrocardiógrafo (ECG)", "Electroencefalógrafo (EEG)", "Electromiógrafo (EMG)", "Equipo de fisioterapia", 
+  "Equipo de hemodiálisis", "Equipo de radioterapia", "Equipo de ultrasonido terapéutico", "Fototerapia neonatal", "Gasómetro", 
+  "Gastroscopio", "Histeroscopio", "Holter", "Incubadora neonatal", "Lámpara cialítica", "Laringoscopio", "Lavadora desinfectadora", "Láser quirúrgico", "Litotriptor", 
+  "Máquina de anestesia", "Mamógrafo", "Mesa quirúrgica", "Microscopio", "Monitor de presión arterial ambulatoria (MAPA)", "Monitor de signos vitales", 
+  "Monitor fetal", "Monitor multiparámetros", "Oxímetro de pulso", "Rayos X fijo", "Rayos X portátil", "Refrigerador para laboratorio", 
+  "Refrigerador para vacunas", "Selladora de instrumental", "Servidor de imágenes médicas", "Sistema de ósmosis inversa", "Sistema PACS", "Sistema RIS", 
+  "Termocuna", "Tomógrafo", "Torre de artroscopia", "Torre de endoscopia", "Torre laparoscópica", "Ultrasonido para limpieza de instrumental", "Ventilador de transporte", 
+  "Ventilador mecánico", "Ventilador neonatal", "Videolaringoscopio", "Otro"];
 
 const emptyForm = {
   codigo: "", nombre: "", tipo: "", marca: "", modelo: "", serie: "", fabricante: "",
